@@ -1,0 +1,5 @@
+comrueda/ejb/UsuarioLogic.class
+comrueda/entities/BaseEntity.class
+comrueda/exceptions/BusinessLogicException.class
+comrueda/entities/UsuarioEntity.class
+comrueda/persistance/UsuarioPersistance.class
