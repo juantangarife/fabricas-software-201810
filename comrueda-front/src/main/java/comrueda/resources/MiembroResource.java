@@ -43,7 +43,7 @@ public class MiembroResource {
 
 	@GET
 	public List<MiembroDTO> getMiembros() {
-		return listEntity2DTO(miembroLogic.listarMiembros());
+            return listEntity2DTO(miembroLogic.listarMiembros());
 	}
 
 	@GET
