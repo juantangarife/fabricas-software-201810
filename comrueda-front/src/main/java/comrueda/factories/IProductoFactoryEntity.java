@@ -5,8 +5,8 @@
  */
 package comrueda.factories;
 
-import comrueda.entities.ProductoEntity;
-import comrueda.dtos.IProductoDTO;
+import comrueda.productos.productoSimple.entities.ProductoEntity;
+import comrueda.productos.dtos.interfaces.IProductoDTO;
 /**
  *
  * @author jctan

@@ -1,4 +1,5 @@
-
 .DS_Store
-/comrueda-back/target/
-/comrueda-front/target/
+comrueda-back/target/
+comrueda-front/target/
+*iml/
+.idea/

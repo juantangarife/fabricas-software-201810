@@ -1,23 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.comrueda</groupId>
-		<artifactId>comrueda</artifactId>
-		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
-	<artifactId>comrueda-front</artifactId>
-	<packaging>war</packaging>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.comrueda</groupId>
+        <artifactId>comrueda</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>comrueda-front</artifactId>
+    <packaging>war</packaging>
 
-	<name>comrueda-web</name>
+    <name>comrueda-web</name>
 
-	<dependencies>
-		<dependency>
-        		<groupId>com.comrueda</groupId>
-       	 	<artifactId>comrueda-back</artifactId>
-      	  	<version>1.0</version>
-      	  </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.comrueda</groupId>
+            <artifactId>comrueda-back</artifactId>
+            <version>1.0</version>
+        </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
@@ -39,5 +39,5 @@
             <artifactId>arquillian-junit-container</artifactId>
             <type>jar</type>
         </dependency>
-  </dependencies>
+    </dependencies>
 </project>
