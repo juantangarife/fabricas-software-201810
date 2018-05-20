@@ -3,3 +3,4 @@ comrueda-back/target/
 comrueda-front/target/
 *iml/
 .idea/
+/comrueda-back-aspect/target/

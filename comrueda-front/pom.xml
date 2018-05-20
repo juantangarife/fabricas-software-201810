@@ -19,6 +19,11 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>com.comrueda</groupId>
+            <artifactId>comrueda-back-aspect</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.6.2</version>
@@ -39,5 +44,51 @@
             <artifactId>arquillian-junit-container</artifactId>
             <type>jar</type>
         </dependency>
+        <!-- AspectJ -->	
+	<dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.9</version>
+        </dependency>
     </dependencies>
+    <build>
+		<plugins>
+		
+			<!-- AspectJ: weave aspects -->
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>aspectj-maven-plugin</artifactId>
+			    <version>1.7</version>
+			    <configuration>
+			        <complianceLevel>1.8</complianceLevel>
+			        <source>1.8</source>
+			        <target>1.8</target>
+			        <showWeaveInfo>true</showWeaveInfo>
+			        <verbose>true</verbose>
+			        <Xlint>ignore</Xlint>
+			        <encoding>UTF-8 </encoding>
+                    <weaveDependencies>
+                        <weaveDependency>
+						    <groupId>com.comrueda</groupId>
+						    <artifactId>comrueda-back-aspect</artifactId>
+                        </weaveDependency>
+                        <weaveDependency>
+						    <groupId>com.comrueda</groupId>
+						    <artifactId>comrueda-back</artifactId>
+                        </weaveDependency>
+                    </weaveDependencies>			        
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <!-- use this goal to weave all your main classes -->
+			                <goal>compile</goal>
+			                <!-- use this goal to weave all your test classes -->
+			                <goal>test-compile</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+                    </plugins>
+    </build>
 </project>

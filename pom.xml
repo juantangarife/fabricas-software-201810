@@ -8,6 +8,7 @@
   <modules>
   	<module>comrueda-back</module>
   	<module>comrueda-front</module>
+    <module>comrueda-back-aspect</module>
   </modules>
   <dependencyManagement>
         <dependencies>
