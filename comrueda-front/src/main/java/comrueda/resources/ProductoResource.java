@@ -2,9 +2,11 @@ package comrueda.resources;
 
 import comrueda.dtos.ProductoDTO;
 import comrueda.ejb.ProductoLogic;
-import comrueda.entities.ProductoEntity;
 import comrueda.exceptions.BusinessLogicException;
 import comrueda.persistance.ProductoPersistance;
+import comrueda.factories.IProductoFactoryEntity;
+import comrueda.entities.ProductoEntity;
+import comrueda.factories.ProductoImagenEntityFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -22,12 +24,15 @@ public class ProductoResource {
 
 	@Inject
 	ProductoLogic productoLogic;
+        
+        @Inject
+        IProductoFactoryEntity productoFactoryEntity;
 
 	private static final Logger LOGGER = Logger.getLogger(ProductoPersistance.class.getName());
 
 	@POST
 	public ProductoDTO crearProducto(ProductoDTO producto) throws BusinessLogicException {
-		ProductoEntity productoEntity = producto.toEntity();
+		ProductoEntity productoEntity = productoFactoryEntity.getProductoEntity(producto);
 		ProductoEntity nuevoProducto = productoLogic.crearProducto(productoEntity);
 		return new ProductoDTO(nuevoProducto);
 	}
@@ -50,12 +55,12 @@ public class ProductoResource {
 	@PUT
 	@Path("{id: \\d+}")
 	public ProductoDTO actualizar(@PathParam("id") Long id, ProductoDTO producto) throws BusinessLogicException {
-		producto.setId(id);
-        ProductoEntity entity = productoLogic.buscar(id);
-        if (entity == null) {
-            throw new BusinessLogicException("El recurso /productos/" + id + " no existe.");
-        }
-        return new ProductoDTO(productoLogic.actualizar(producto.toEntity()));
+            producto.setId(id);
+            ProductoEntity entity = productoLogic.buscar(id);
+            if (entity == null) {
+                throw new BusinessLogicException("El recurso /productos/" + id + " no existe.");
+            }
+            return new ProductoDTO(productoLogic.actualizar(productoFactoryEntity.getProductoEntity(producto)));
 	}
 
 	@DELETE

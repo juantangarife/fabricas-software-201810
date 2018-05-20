@@ -10,6 +10,7 @@ public class ProductoEntity extends BaseEntity implements Serializable {
     private String descripcion;
     private int cantidad;
     private double precio;
+    private String imagen;
 
     public String getNombre() {
         return nombre;
@@ -41,5 +42,13 @@ public class ProductoEntity extends BaseEntity implements Serializable {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+    
+    public String getImagen(){
+        return this.imagen;
+    }
+    
+    public void setImagen(String imagen){
+        this.imagen = imagen;
     }
 }

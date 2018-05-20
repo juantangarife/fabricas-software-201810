@@ -2,7 +2,7 @@ package comrueda.dtos;
 
 import comrueda.entities.ProductoEntity;
 
-public class ProductoDTO {
+public class ProductoDTO implements IProductoDTO{
     private Long id;
     private String nombre;
     private String descripcion;
@@ -59,14 +59,12 @@ public class ProductoDTO {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
-    public ProductoEntity toEntity() {
-        ProductoEntity entity = new ProductoEntity();
-        entity.setId(this.id);
-        entity.setNombre(this.nombre);
-        entity.setDescripcion(this.descripcion);
-        entity.setCantidad(this.cantidad);
-        entity.setPrecio(this.precio);
-        return entity;
+    
+    public String getImagen(){
+        return "";
+    }
+    
+    public void setImagen(String imagen){
+        
     }
 }
