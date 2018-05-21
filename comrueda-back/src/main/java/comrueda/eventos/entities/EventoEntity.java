@@ -13,6 +13,7 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class EventoEntity extends BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = -813959276216034481L;
     private String nombre;
     
     @Temporal(TemporalType.DATE)

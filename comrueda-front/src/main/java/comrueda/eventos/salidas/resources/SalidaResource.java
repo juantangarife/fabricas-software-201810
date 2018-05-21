@@ -26,6 +26,7 @@ public class SalidaResource {
 	private static final Logger LOGGER = Logger.getLogger(SalidaPersistance.class.getName());
 
 	@POST
+	@Path("crear")
 	public SalidaDTO crearSalida(SalidaDTO salida) throws BusinessLogicException {
 		SalidaEntity salidaEntity = salida.toEntity();
 		SalidaEntity nuevoMiembro = salidaLogic.crearSalida(salidaEntity);
