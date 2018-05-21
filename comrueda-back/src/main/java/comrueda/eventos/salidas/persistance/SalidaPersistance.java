@@ -39,6 +39,9 @@ public class SalidaPersistance {
     }
 
     public void borrar(SalidaEntity entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
         em.remove(entity);
     }
 }

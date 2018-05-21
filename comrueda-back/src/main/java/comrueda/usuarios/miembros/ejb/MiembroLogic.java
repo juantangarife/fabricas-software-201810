@@ -17,6 +17,15 @@ public class MiembroLogic {
 	
 	@Inject
     private MiembroPersistance persistence;
+
+	public MiembroEntity autenticarMiembro(String correo, String password) throws BusinessLogicException{
+	    boolean correoValido = correo != null && !correo.equals("");
+	    boolean passwordValido = password != null && password.equals("");
+        if (correoValido && passwordValido) {
+            throw new BusinessLogicException("El correo y la contraseña son obligatorios");
+        }
+	    return this.persistence.autenticarMiembro(correo, password);
+    }
 	
 	public MiembroEntity crearMiembro(MiembroEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de miembro");

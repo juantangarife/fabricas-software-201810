@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("salidas")
+@Path("eventos/salidas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -37,6 +37,7 @@ public class SalidaResource {
 		return listEntity2DTO(salidaLogic.listarSalidas());
 	}
 
+	/*
 	@GET
 	@Path("{id: \\d+}")
 	public SalidaDTO buscar(@PathParam("id") Long id) {
@@ -65,6 +66,7 @@ public class SalidaResource {
         SalidaEntity entity = salidaLogic.buscar(id);
 		salidaLogic.borrar(entity);
 	}
+	*/
 
 	private List<SalidaDTO> listEntity2DTO(List<SalidaEntity> entityList) {
 		List<SalidaDTO> list = new ArrayList<SalidaDTO>();

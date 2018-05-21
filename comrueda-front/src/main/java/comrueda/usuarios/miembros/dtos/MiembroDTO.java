@@ -1,16 +1,16 @@
 package comrueda.usuarios.miembros.dtos;
 
+import comrueda.usuarios.dtos.LoginDTO;
 import comrueda.usuarios.miembros.entities.MiembroEntity;
 
 import java.util.Date;
 
-public class MiembroDTO {
+public class MiembroDTO extends LoginDTO {
 	
 	private Long id;
-	private String correo;
-	private String password;
 	private String nombre;
 	private Date fechaNacimimento;
+	private String imagen;
 	private boolean esAdministrador;
 
     public MiembroDTO() {
@@ -31,22 +31,6 @@ public class MiembroDTO {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getNombre() {

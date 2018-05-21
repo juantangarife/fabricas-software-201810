@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("productos")
+@Path("marketplace/productos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -45,6 +45,7 @@ public class ProductoResource {
         return listEntity2DTO(productoLogic.listarProductos());
     }
 
+    /*
     @GET
     @Path("{id: \\d+}")
     public ProductoDTO buscar(@PathParam("id") Long id) {
@@ -54,6 +55,7 @@ public class ProductoResource {
         }
         return null;
     }
+    */
 
     @PUT
     @Path("{id: \\d+}")
@@ -66,6 +68,7 @@ public class ProductoResource {
         return new ProductoDTO(productoLogic.actualizar(productoFactoryEntity.getProductoEntity(producto)));
     }
 
+    /*
     @DELETE
     @Path("{id: \\d+}")
     public void borrar(@PathParam("id") Long id) throws BusinessLogicException {
@@ -73,6 +76,7 @@ public class ProductoResource {
         ProductoEntity entity = productoLogic.buscar(id);
         productoLogic.borrar(entity);
     }
+    */
 
     private List<ProductoDTO> listEntity2DTO(List<ProductoEntity> entityList) {
         List<ProductoDTO> list = new ArrayList<ProductoDTO>();

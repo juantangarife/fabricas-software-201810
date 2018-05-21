@@ -39,6 +39,9 @@ public class ProductoPersistance {
     }
     
     public void borrar(ProductoEntity entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
         em.remove(entity);
     }
 

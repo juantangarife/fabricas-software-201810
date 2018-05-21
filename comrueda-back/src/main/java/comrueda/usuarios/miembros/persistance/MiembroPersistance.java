@@ -27,8 +27,20 @@ public class MiembroPersistance {
 
     public List<MiembroEntity> listarMiembros() {
         LOGGER.info("Consultando todos los miembros");
-        TypedQuery<MiembroEntity> query = em.createQuery("select u from MiembroEntity u", MiembroEntity.class);
+        TypedQuery<MiembroEntity> query = em.createQuery("select u from MiembroEntity u where u.esAdministrador=false", MiembroEntity.class);
         return query.getResultList();
+    }
+
+    public MiembroEntity autenticarMiembro(String correo, String password){
+        TypedQuery<MiembroEntity> query = em.createQuery("Select e From MiembroEntity e where e.correo = :correo and e.password = :password", MiembroEntity.class);
+        query = query.setParameter("correo", correo).setParameter("password", password);
+        List<MiembroEntity> results = query.getResultList();
+        if(results.isEmpty()){
+            return null;
+        }
+        else {
+            return results.get(0);
+        }
     }
 
     public MiembroEntity buscarMiembroCorreo(String correo) {
@@ -53,6 +65,9 @@ public class MiembroPersistance {
     }
 
     public void borrar(MiembroEntity entity) {
+        if (!em.contains(entity)) {
+            entity = em.merge(entity);
+        }
         em.remove(entity);
     }
 
