@@ -1,6 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>com.comrueda</groupId>
         <artifactId>comrueda</artifactId>
@@ -12,17 +14,54 @@
 
     <name>comrueda-web</name>
 
+    <properties>
+        <ignoreWebxml>true</ignoreWebxml>
+    </properties>
+
+    <!-- perfiles -->
+    <profiles>
+
+        <profile>
+            <id>sin-logger</id>
+            <activation>
+                <activeByDefault/>
+            </activation>    
+            <dependencies>
+                <!-- incluya el back-end sin el aspecto -->
+                <dependency>
+                    <groupId>com.comrueda</groupId>
+                    <artifactId>comrueda-back</artifactId>
+                    <version>1.0</version>
+                </dependency>
+            </dependencies>    
+        </profile>
+        
+        <profile>
+            <id>con-logger</id>
+            <dependencies>
+                
+                <!-- incluya el back-end con el aspecto aplicado -->
+                <dependency>
+                    <groupId>com.comrueda</groupId>
+                    <artifactId>comrueda-back-aspect</artifactId>
+                    <version>1.0</version>
+                    <!-- no incluya el back-end original -->
+                    <exclusions>
+                        <exclusion>
+                            <groupId>com.comrueda</groupId>
+                            <artifactId>comrueda-back</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+        
+            </dependencies>    
+        </profile>    
+        
+    </profiles>
+        
+    <!-- dependencias generales -->
     <dependencies>
-        <dependency>
-            <groupId>com.comrueda</groupId>
-            <artifactId>comrueda-back</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.comrueda</groupId>
-            <artifactId>comrueda-back-aspect</artifactId>
-            <version>1.0</version>
-        </dependency>
+                
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
@@ -44,51 +83,27 @@
             <artifactId>arquillian-junit-container</artifactId>
             <type>jar</type>
         </dependency>
+        
         <!-- AspectJ -->	
 	<dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.8.9</version>
+            <version>1.8.13</version>
         </dependency>
     </dependencies>
+    
     <build>
-		<plugins>
-		
-			<!-- AspectJ: weave aspects -->
-			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>aspectj-maven-plugin</artifactId>
-			    <version>1.7</version>
-			    <configuration>
-			        <complianceLevel>1.8</complianceLevel>
-			        <source>1.8</source>
-			        <target>1.8</target>
-			        <showWeaveInfo>true</showWeaveInfo>
-			        <verbose>true</verbose>
-			        <Xlint>ignore</Xlint>
-			        <encoding>UTF-8 </encoding>
-                    <weaveDependencies>
-                        <weaveDependency>
-						    <groupId>com.comrueda</groupId>
-						    <artifactId>comrueda-back-aspect</artifactId>
-                        </weaveDependency>
-                        <weaveDependency>
-						    <groupId>com.comrueda</groupId>
-						    <artifactId>comrueda-back</artifactId>
-                        </weaveDependency>
-                    </weaveDependencies>			        
-			    </configuration>
-			    <executions>
-			        <execution>
-			            <goals>
-			                <!-- use this goal to weave all your main classes -->
-			                <goal>compile</goal>
-			                <!-- use this goal to weave all your test classes -->
-			                <goal>test-compile</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			</plugin>
-                    </plugins>
-    </build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <packagingExcludes>
+                        WEB-INF/lib/conrueda-back-1.0.jar
+                    </packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>    
+
 </project>

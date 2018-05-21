@@ -1,16 +1,43 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.comrueda</groupId>
-  <artifactId>comrueda</artifactId>
-  <version>1.0</version>
-  <packaging>pom</packaging>
-  <name>comrueda</name>
-  <modules>
-  	<module>comrueda-back</module>
-  	<module>comrueda-front</module>
-    <module>comrueda-back-aspect</module>
-  </modules>
-  <dependencyManagement>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.comrueda</groupId>
+    <artifactId>comrueda</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>comrueda</name>
+    
+    <modules>
+        <module>comrueda-back</module>
+        <module>comrueda-front</module>
+        <module>comrueda-back-aspect</module>
+    </modules>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    
+    <!-- perfiles -->
+    <profiles>
+        <!-- sin logger -->
+        <profile>
+            <id>sin-logger</id>
+            <activation>
+                <activeByDefault/>
+            </activation>    
+        </profile>
+        
+        <!-- con logger -->
+        <profile>
+            <id>con-logger</id>
+        </profile>            
+    </profiles>
+    
+    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
@@ -26,7 +53,9 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.glassfish.embedded/maven-embedded-glassfish-plugin -->
     </dependencies>
+    
 </project>
