@@ -1,12 +1,13 @@
-package comrueda.productos.productoSimple.entities;
+package comrueda.productos.entities;
 
 import comrueda.common.entities.BaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-@Entity
-public class ProductoEntity extends BaseEntity implements Serializable {
+@MappedSuperclass
+public abstract class ProductoBaseEntity extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 7199795167272135570L;
     private String nombre;
     private String descripcion;

@@ -5,19 +5,20 @@
  */
 package comrueda.factories;
 
-import comrueda.productos.dtos.interfaces.IProductoDTO;
-import comrueda.productos.productoSimple.entities.ProductoEntity;
+
+import comrueda.productos.productoImagen.dtos.ProductoImagenDTO;
+import comrueda.productos.productoImagen.entities.ProductoImagenEntity;
 
 /**
  *
  * @author jctan
  */
-public class ProductoImagenEntityFactory implements IProductoFactoryEntity{
+public class ProductoImagenEntityFactory{
     public ProductoImagenEntityFactory(){
         
     }
-    public ProductoEntity getProductoEntity(IProductoDTO p) {
-        ProductoEntity entity = new ProductoEntity();
+    public ProductoImagenEntity getProductoEntity(ProductoImagenDTO p) {
+        ProductoImagenEntity entity = new ProductoImagenEntity();
         entity.setId(p.getId());
         entity.setNombre(p.getNombre());
         entity.setDescripcion(p.getDescripcion());

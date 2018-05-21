@@ -1,22 +1,20 @@
 package comrueda.productos.productoSimple.resources;
 
+import comrueda.common.exceptions.BusinessLogicException;
+import comrueda.factories.ProductoSimpleEntityFactory;
 import comrueda.productos.productoSimple.dtos.ProductoDTO;
 import comrueda.productos.productoSimple.ejb.ProductoLogic;
-import comrueda.common.exceptions.BusinessLogicException;
-import comrueda.productos.productoSimple.persistance.ProductoPersistance;
-import comrueda.factories.IProductoFactoryEntity;
 import comrueda.productos.productoSimple.entities.ProductoEntity;
-import comrueda.factories.ProductoImagenEntityFactory;
+import comrueda.productos.productoSimple.ejb.ProductoLogic;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("marketplace/productos")
+@Path("marketplace/productos-simples")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -25,15 +23,16 @@ public class ProductoResource {
     @Inject
     ProductoLogic productoLogic;
 
-    private IProductoFactoryEntity productoFactoryEntity;
+    private ProductoSimpleEntityFactory productoFactoryEntity;
 
-    private static final Logger LOGGER = Logger.getLogger(ProductoPersistance.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProductoResource.class.getName());
 
     public ProductoResource() {
-        this.productoFactoryEntity = new ProductoImagenEntityFactory();
+        this.productoFactoryEntity = new ProductoSimpleEntityFactory();
     }
 
     @POST
+    @Path("agregar")
     public ProductoDTO crearProducto(ProductoDTO producto) throws BusinessLogicException {
         ProductoEntity productoEntity = productoFactoryEntity.getProductoEntity(producto);
         ProductoEntity nuevoProducto = productoLogic.crearProducto(productoEntity);

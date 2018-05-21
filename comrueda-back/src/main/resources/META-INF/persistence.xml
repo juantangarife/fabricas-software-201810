@@ -4,7 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>java:app/jdbc/comrueda</jta-data-source>
     <class>comrueda.usuarios.miembros.entities.MiembroEntity</class>
-    <class>comrueda.productos.productoSimple.entities.ProductoEntity</class>
+    <class>comrueda.productos.productoImagen.entities.ProductoImagenEntity</class>
     <class>comrueda.eventos.salidas.entities.SalidaEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>

@@ -1,14 +1,14 @@
 package comrueda.productos.productoSimple.dtos;
 
 import comrueda.productos.productoSimple.entities.ProductoEntity;
-import comrueda.productos.dtos.interfaces.IProductoDTO;
+import comrueda.productos.dtos.IProductoDTO;
 
 public class ProductoDTO implements IProductoDTO {
-    private Long id;
-    private String nombre;
-    private String descripcion;
-    private int cantidad;
-    private double precio;
+    protected Long id;
+    protected String nombre;
+    protected String descripcion;
+    protected int cantidad;
+    protected double precio;
 
     public ProductoDTO() {
     }
@@ -59,13 +59,5 @@ public class ProductoDTO implements IProductoDTO {
 
     public void setPrecio(double precio) {
         this.precio = precio;
-    }
-    
-    public String getImagen(){
-        return "";
-    }
-    
-    public void setImagen(String imagen){
-        
     }
 }
