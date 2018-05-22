@@ -6,6 +6,7 @@
     <class>comrueda.usuarios.miembros.entities.MiembroEntity</class>
     <class>comrueda.productos.productoSimple.entities.ProductoEntity</class>
     <class>comrueda.eventos.salidas.entities.SalidaEntity</class>
+    <class>comrueda.eventos.encuentros.entities.EncuentroEntity</class>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>

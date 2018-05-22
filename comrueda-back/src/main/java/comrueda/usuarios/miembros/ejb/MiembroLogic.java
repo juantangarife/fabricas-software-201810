@@ -19,19 +19,15 @@ public class MiembroLogic {
     private MiembroPersistance persistence;
 	
 	public MiembroEntity crearMiembro(MiembroEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de miembro");
         if (persistence.buscarMiembroCorreo(entity.getCorreo()) != null) {
             throw new BusinessLogicException("Ya existe un miembro con el correo \"" + entity.getCorreo() + "\"");
         }
         persistence.crear(entity);
-        LOGGER.info("Termina proceso de creación de mienbro");
         return entity;
     }
 
     public List<MiembroEntity> listarMiembros() {
-        LOGGER.info("Inicia proceso de consultar todos los miembros");
         List<MiembroEntity> miembros = persistence.listarMiembros();
-        LOGGER.info("Termina proceso de consultar todos los miembros");
         return miembros;
     }
 
