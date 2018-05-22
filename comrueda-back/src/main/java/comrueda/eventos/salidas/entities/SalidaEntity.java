@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Entity
 public class SalidaEntity extends EventoEntity implements Serializable {
-    private static final long serialVersionUID = 5141657634228477191L;
+    private static final long serialVersionUID = 5141657634228477192L;
     private String puntoEncuentro;
     private String destino;
     

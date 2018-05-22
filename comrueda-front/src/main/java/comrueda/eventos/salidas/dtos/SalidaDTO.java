@@ -106,11 +106,11 @@ public class SalidaDTO extends EventoDTO {
 
     @Override
     public String getDireccion() {
-        throw new UnsupportedOperationException("No disponible");
+        return "";
     }
 
     @Override
     public void setDireccion(String encuentro) {
-        throw new UnsupportedOperationException("No disponible");
+        
     }
 }

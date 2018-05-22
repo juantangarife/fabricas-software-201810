@@ -3,7 +3,6 @@ package comrueda.eventos.encuentros.dtos;
 
 import comrueda.eventos.interfaces.EventoDTO;
 import comrueda.eventos.encuentros.entities.EncuentroEntity;
-import comrueda.eventos.entities.EventoEntity;
 
 import java.util.Date;
 
@@ -24,32 +23,32 @@ public class EncuentroDTO extends EventoDTO {
 
     @Override
     public String getPuntoEncuentro() {
-        throw new UnsupportedOperationException("No disponible");
+        return "";
     }
 
     @Override
     public void setPuntoEncuentro(String puntoEncuentro) {
-        throw new UnsupportedOperationException("No disponible");
+        
     }
 
     @Override
     public String getDestino() {
-        throw new UnsupportedOperationException("No disponible");
+        return "";
     }
 
     @Override
     public void setDestino(String destino) {
-        throw new UnsupportedOperationException("No disponible");
+        
     }
 
     @Override
     public Date getFechaLlegada() {
-        throw new UnsupportedOperationException("No disponible");
+        return null;
     }
 
     @Override
     public void setFechaLlegada(Date fechaLlegada) {
-        throw new UnsupportedOperationException("No disponible");
+        
     }
 
     @Override
