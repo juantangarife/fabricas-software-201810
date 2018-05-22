@@ -1,7 +1,6 @@
-package comrueda.productos.productoImagen.persistance;
+package comrueda.producto.imagen.persistance;
 
-import comrueda.productos.productoImagen.entities.ProductoImagenEntity;
-
+import comrueda.producto.imagen.entities.ProductoImagenEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,22 +10,22 @@ import java.util.logging.Logger;
 
 @Stateless
 public class ProductoImagenPersistance {
-	
-	private static final Logger LOGGER = Logger.getLogger(ProductoImagenPersistance.class.getName());
-	
-	@PersistenceContext(unitName = "ComruedaPU")
+
+    private static final Logger LOGGER = Logger.getLogger(ProductoImagenPersistance.class.getName());
+
+    @PersistenceContext(unitName = "ComruedaPU")
     protected EntityManager em;
-	
-	public ProductoImagenEntity crear(ProductoImagenEntity entity) {
+
+    public ProductoImagenEntity crear(ProductoImagenEntity entity) {
         LOGGER.info("Creando un producto nuevo");
         em.persist(entity);
         LOGGER.info("Nuevo producto creado");
         return entity;
     }
 
-    public List<ProductoImagenEntity> listarProductos(){
+    public List<ProductoImagenEntity> listarProductos() {
         LOGGER.info("Consultando todas los productos");
-        TypedQuery<ProductoImagenEntity> query = em.createQuery("select u from ProductoImagenEntity u", ProductoImagenEntity.class);
+        TypedQuery<ProductoImagenEntity> query = em.createQuery("select u from ProductoEntity u", ProductoImagenEntity.class);
         return query.getResultList();
     }
 
@@ -35,9 +34,9 @@ public class ProductoImagenPersistance {
     }
 
     public ProductoImagenEntity actualizar(ProductoImagenEntity entity) {
-         return em.merge(entity);
+        return em.merge(entity);
     }
-    
+
     public void borrar(ProductoImagenEntity entity) {
         if (!em.contains(entity)) {
             entity = em.merge(entity);

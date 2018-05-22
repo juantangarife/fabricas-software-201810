@@ -5,9 +5,10 @@
  */
 package comrueda.factories;
 
-
+import comrueda.common.helpers.LookupHelper;
+import comrueda.producto.entities.ProductoEntity;
 import comrueda.productos.productoImagen.dtos.ProductoImagenDTO;
-import comrueda.productos.productoImagen.entities.ProductoImagenEntity;
+import java.lang.reflect.Method;
 
 /**
  *
@@ -17,15 +18,19 @@ public class ProductoImagenEntityFactory{
     public ProductoImagenEntityFactory(){
         
     }
-    public ProductoImagenEntity getProductoEntity(ProductoImagenDTO p) {
-        ProductoImagenEntity entity = new ProductoImagenEntity();
+    public ProductoEntity getProductoEntity(ProductoImagenDTO p) {
+        ProductoEntity entity = LookupHelper.lookup(ProductoEntity.class);
         entity.setId(p.getId());
         entity.setNombre(p.getNombre());
         entity.setDescripcion(p.getDescripcion());
         entity.setCantidad(p.getCantidad());
         entity.setPrecio(p.getPrecio());
-        entity.setImagen(p.getImagen());
+        try {
+            Method image = entity.getClass().getMethod("setImagen", new Class[]{String.class});
+            image.invoke(entity, p.getImagen());
+        } catch (Exception e) {
+            System.out.print("Productos sin imagen.");
+        }
         return entity;
     }
-    
 }

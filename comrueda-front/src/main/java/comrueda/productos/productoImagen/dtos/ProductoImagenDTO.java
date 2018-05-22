@@ -5,8 +5,9 @@
  */
 package comrueda.productos.productoImagen.dtos;
 
-import comrueda.productos.productoImagen.entities.ProductoImagenEntity;
+import comrueda.producto.entities.ProductoEntity;
 import comrueda.productos.productoSimple.dtos.ProductoDTO;
+import java.lang.reflect.Method;
 
 /**
  *
@@ -20,13 +21,18 @@ public class ProductoImagenDTO extends ProductoDTO {
         super();
     }
 
-    public ProductoImagenDTO(ProductoImagenEntity producto) {
+    public ProductoImagenDTO(ProductoEntity producto) {
         this.id = producto.getId();
         this.nombre = producto.getNombre();
         this.descripcion = producto.getDescripcion();
         this.cantidad = producto.getCantidad();
         this.precio = producto.getPrecio();
-        this.imagen = producto.getImagen();
+        try {
+            Method image = producto.getClass().getMethod("getImagen");
+            this.imagen = (String) image.invoke(producto);
+        } catch (Exception e) {
+            System.out.print("Productos sin imagen.");
+        }
     }
 
     public String getImagen(){

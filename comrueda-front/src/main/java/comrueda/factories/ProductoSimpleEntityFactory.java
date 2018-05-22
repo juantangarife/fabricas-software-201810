@@ -5,20 +5,22 @@
  */
 package comrueda.factories;
 
-import comrueda.productos.dtos.IProductoDTO;
+import comrueda.common.helpers.LookupHelper;
+import comrueda.producto.entities.ProductoEntity;
 import comrueda.productos.productoSimple.dtos.ProductoDTO;
-import comrueda.productos.productoSimple.entities.ProductoEntity;
+import javax.inject.Inject;
 
 /**
  *
  * @author jctan
  */
 public class ProductoSimpleEntityFactory{
+    
     public ProductoSimpleEntityFactory(){
         
     }
     public ProductoEntity getProductoEntity(ProductoDTO p) {
-        ProductoEntity entity = new ProductoEntity();
+        ProductoEntity entity = LookupHelper.lookup(ProductoEntity.class);
         entity.setId(p.getId());
         entity.setNombre(p.getNombre());
         entity.setDescripcion(p.getDescripcion());
@@ -26,5 +28,4 @@ public class ProductoSimpleEntityFactory{
         entity.setPrecio(p.getPrecio());
         return entity;
     }
-    
 }

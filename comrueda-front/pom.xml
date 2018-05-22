@@ -19,6 +19,17 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>com.comrueda</groupId>
+            <artifactId>producto</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.comrueda</groupId>
+            <artifactId>producto-simple</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>
             <version>2.6</version>

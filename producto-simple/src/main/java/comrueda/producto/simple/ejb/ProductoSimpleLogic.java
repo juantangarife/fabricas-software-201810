@@ -1,7 +1,8 @@
-package comrueda.productos.productoSimple.ejb;
+package comrueda.producto.simple.ejb;
 
-import comrueda.productos.productoSimple.entities.ProductoEntity;
-import comrueda.productos.productoSimple.persistance.ProductoPersistance;
+import comrueda.producto.ejb.ProductoLogic;
+import comrueda.producto.entities.ProductoEntity;
+import comrueda.producto.simple.persistance.ProductoSimplePersistance;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -9,21 +10,23 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Stateless
-public class ProductoLogic {
-	
-	private static final Logger LOGGER = Logger.getLogger(ProductoLogic.class.getName());
-	
-	@Inject
-    private ProductoPersistance persistence;
-	
-	public ProductoEntity crearProducto(ProductoEntity entity) {
+@Stateless(name="ProductoLogic")
+public class ProductoSimpleLogic implements ProductoLogic {
+
+    private static final Logger LOGGER = Logger.getLogger(ProductoSimpleLogic.class.getName());
+
+    @Inject
+    private ProductoSimplePersistance persistence;
+
+    @Override
+    public ProductoEntity crearProducto(ProductoEntity entity) {
         LOGGER.info("Inicia proceso de creación de producto");
         persistence.crear(entity);
         LOGGER.info("Termina proceso de creación de producto");
         return entity;
     }
 
+    @Override
     public List<ProductoEntity> listarProductos() {
         LOGGER.info("Inicia proceso de consultar todos los productos");
         List<ProductoEntity> productos = persistence.listarProductos();
@@ -31,14 +34,17 @@ public class ProductoLogic {
         return productos;
     }
 
+    @Override
     public ProductoEntity buscar(Long id) {
         return persistence.buscar(id);
     }
 
-    public ProductoEntity actualizar(ProductoEntity entity)  {
+    @Override
+    public ProductoEntity actualizar(ProductoEntity entity) {
         return persistence.actualizar(entity);
     }
-    
+
+    @Override
     public void borrar(ProductoEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar producto con id={0}", entity.getId());
         persistence.borrar(entity);

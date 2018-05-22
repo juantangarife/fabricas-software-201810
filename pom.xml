@@ -8,6 +8,9 @@
   <modules>
   	<module>comrueda-back</module>
   	<module>comrueda-front</module>
+    <module>producto-simple</module>
+    <module>mavenproject1/producto-imagen</module>
+    <module>producto</module>
   </modules>
   <dependencyManagement>
         <dependencies>

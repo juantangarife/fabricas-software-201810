@@ -1,12 +1,9 @@
-package comrueda.productos.productoImagen.entities;
-
-import comrueda.productos.entities.ProductoBaseEntity;
+package comrueda.producto.entities;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
-public class ProductoImagenEntity extends ProductoBaseEntity implements Serializable {
+public abstract class ProductoEntity extends ProductoBaseEntity implements Serializable {
     private static final long serialVersionUID = 7199795167272135570L;
 
     private String imagen;

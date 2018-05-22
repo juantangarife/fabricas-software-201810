@@ -1,6 +1,7 @@
-package comrueda.productos.productoSimple.persistance;
+package comrueda.producto.simple.persistance;
 
-import comrueda.productos.productoSimple.entities.ProductoEntity;
+import comrueda.producto.entities.ProductoEntity;
+import comrueda.producto.persistance.ProductoPersistance;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,35 +10,40 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Stateless
-public class ProductoPersistance {
-	
-	private static final Logger LOGGER = Logger.getLogger(ProductoPersistance.class.getName());
-	
-	@PersistenceContext(unitName = "ComruedaPU")
+@Stateless(name="ProductoPersistance")
+public class ProductoSimplePersistance implements ProductoPersistance {
+
+    private static final Logger LOGGER = Logger.getLogger(ProductoSimplePersistance.class.getName());
+
+    @PersistenceContext(unitName = "ComruedaPU")
     protected EntityManager em;
-	
-	public ProductoEntity crear(ProductoEntity entity) {
+
+    @Override
+    public ProductoEntity crear(ProductoEntity entity) {
         LOGGER.info("Creando un producto nuevo");
         em.persist(entity);
         LOGGER.info("Nuevo producto creado");
         return entity;
     }
 
-    public List<ProductoEntity> listarProductos(){
+    @Override
+    public List<ProductoEntity> listarProductos() {
         LOGGER.info("Consultando todas los productos");
         TypedQuery<ProductoEntity> query = em.createQuery("select u from ProductoEntity u", ProductoEntity.class);
         return query.getResultList();
     }
 
+    @Override
     public ProductoEntity buscar(Long id) {
         return em.find(ProductoEntity.class, id);
     }
 
+    @Override
     public ProductoEntity actualizar(ProductoEntity entity) {
-         return em.merge(entity);
+        return em.merge(entity);
     }
-    
+
+    @Override
     public void borrar(ProductoEntity entity) {
         if (!em.contains(entity)) {
             entity = em.merge(entity);
