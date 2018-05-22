@@ -24,16 +24,16 @@
             <version>1.0</version>
             <type>jar</type>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>com.comrueda</groupId>
             <artifactId>producto-simple</artifactId>
             <version>1.0</version>
-        </dependency>-->
-        <dependency>
+        </dependency>
+<!--        <dependency>
             <groupId>com.comrueda</groupId>
             <artifactId>producto-imagen</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>
