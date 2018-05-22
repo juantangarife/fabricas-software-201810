@@ -43,7 +43,7 @@ public class Eventos implements IEventoResource{
     EncuentroLogic encuentroLogic;
    
     public void getEvento(){
-        String tipoEvento= "Salida";
+        String tipoEvento= "Encuentro";
         if(tipoEvento.equals("Salida")){
             delegado= new SalidaResource(salidaLogic);
         }

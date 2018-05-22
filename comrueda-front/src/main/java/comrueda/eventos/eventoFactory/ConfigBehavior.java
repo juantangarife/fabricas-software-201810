@@ -30,7 +30,7 @@ public class ConfigBehavior {
 		String ruta = new File("").getAbsolutePath();
 		misPropiedades = new Properties();
 		try {
-			   misPropiedades.load(new BufferedReader(new FileReader(ruta + "/src/miAplicacion.properties")));
+			   misPropiedades.load(new BufferedReader(new FileReader(ruta + "/miAplicacion.properties")));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
