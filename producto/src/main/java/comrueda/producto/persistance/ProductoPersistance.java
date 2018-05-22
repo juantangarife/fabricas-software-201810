@@ -3,7 +3,7 @@ package comrueda.producto.persistance;
 import comrueda.producto.entities.ProductoEntity;
 
 import java.util.List;
-
+//import javax.ejb.Remote;
 
 public interface ProductoPersistance {
 

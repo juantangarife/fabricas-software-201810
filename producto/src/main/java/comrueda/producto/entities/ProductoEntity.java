@@ -1,5 +1,8 @@
 package comrueda.producto.entities;
 
+import javax.ejb.Remote;
+
+@Remote(ProductoEntity.class)
 public interface ProductoEntity {
     
     public Long getId();

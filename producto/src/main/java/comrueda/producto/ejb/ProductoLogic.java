@@ -3,8 +3,9 @@ package comrueda.producto.ejb;
 import comrueda.producto.entities.ProductoEntity;
 
 import java.util.List;
+//import javax.ejb.Remote;
 
-
+//@Remote(ProductoLogic.class)
 public interface ProductoLogic {
     public ProductoEntity crearProducto(ProductoEntity entity);
 
@@ -17,3 +18,5 @@ public interface ProductoLogic {
     public void borrar(ProductoEntity entity);
 
 }
+
+

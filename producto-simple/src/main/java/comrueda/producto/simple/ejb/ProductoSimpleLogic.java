@@ -2,7 +2,7 @@ package comrueda.producto.simple.ejb;
 
 import comrueda.producto.ejb.ProductoLogic;
 import comrueda.producto.entities.ProductoEntity;
-import comrueda.producto.simple.persistance.ProductoSimplePersistance;
+import comrueda.producto.persistance.ProductoPersistance;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ public class ProductoSimpleLogic implements ProductoLogic {
     private static final Logger LOGGER = Logger.getLogger(ProductoSimpleLogic.class.getName());
 
     @Inject
-    private ProductoSimplePersistance persistence;
+    private ProductoPersistance persistence;
 
     @Override
     public ProductoEntity crearProducto(ProductoEntity entity) {

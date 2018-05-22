@@ -9,8 +9,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.enterprise.inject.Default;
 
 @Stateless(name="ProductoPersistance")
+@Default
 public class ProductoSimplePersistance implements ProductoPersistance {
 
     private static final Logger LOGGER = Logger.getLogger(ProductoSimplePersistance.class.getName());

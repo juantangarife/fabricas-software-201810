@@ -2,8 +2,8 @@ package comrueda.productos.productoImagen.resources;
 
 import comrueda.common.exceptions.BusinessLogicException;
 import comrueda.factories.ProductoImagenEntityFactory;
+import comrueda.producto.ejb.ProductoLogic;
 import comrueda.producto.entities.ProductoEntity;
-import comrueda.producto.simple.ejb.ProductoSimpleLogic;
 import comrueda.productos.productoImagen.dtos.ProductoImagenDTO;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class ProductoImagenResource {
 
     @Inject
-    ProductoSimpleLogic productoLogic;
+    ProductoLogic productoLogic;
 
     private ProductoImagenEntityFactory productoFactoryEntity;
 

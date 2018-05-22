@@ -12,6 +12,10 @@ import javax.naming.NamingEnumeration;
 public class LookupHelper {
  
     public static <T> T lookup(Class<T> interfaceRequired) {
+        System.out.print("LOOKING UPPPPPPP!!!!!!"); 
+        System.out.print("LOOKING UPPPPPPP!!!!!!"); 
+        System.out.print("LOOKING UPPPPPPP!!!!!!"); 
+        System.out.print("LOOKING UPPPPPPP!!!!!!"); 
         return lookup(interfaceRequired, null);
     }
      
