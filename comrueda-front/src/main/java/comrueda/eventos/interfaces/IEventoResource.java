@@ -27,17 +27,17 @@ import javax.ws.rs.PathParam;
  *
  * @author Sistemas
  */
-public abstract class EventoResource {
+public interface IEventoResource {
 
-	public abstract EventoDTO crearMiembro(EventoDTO evento) throws BusinessLogicException;
+	EventoDTO crearMiembro(EventoDTO evento) throws BusinessLogicException;
 
-	public abstract List<EventoDTO> getEventos();
+	List<EventoDTO> getEventos();
 
-	public abstract EventoDTO buscar(Long id);
+	EventoDTO buscar(Long id);
 
-	public abstract EventoDTO actualizar(Long id, EventoDTO evento) throws BusinessLogicException;
+	EventoDTO actualizar(Long id, EventoDTO evento) throws BusinessLogicException;
 
-	public abstract void borrar( Long id) throws BusinessLogicException;
+	void borrar( Long id) throws BusinessLogicException;
 
 	//public abstract List<EventoDTO> listEntity2DTO(List<EventoEntity> entityList);
 }

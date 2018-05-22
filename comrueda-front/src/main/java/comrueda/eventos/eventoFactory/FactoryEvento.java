@@ -6,8 +6,8 @@
 package comrueda.eventos.eventoFactory;
 
 import comrueda.eventos.encuentros.resources.EncuentroResource;
-import comrueda.eventos.interfaces.EventoResource;
 import comrueda.eventos.salidas.resources.SalidaResource;
+import comrueda.eventos.interfaces.IEventoResource;
 
 /**
  *
@@ -15,14 +15,16 @@ import comrueda.eventos.salidas.resources.SalidaResource;
  */
 public class FactoryEvento {
 
-    public static EventoResource GetEvento() {
-		String tipoEvento= ConfigBehavior.GetProperty("Comunidad.TipoEvento");
-		if(tipoEvento.equals("Salida")){
-			return new SalidaResource();
-		}
-		else if(tipoEvento.equals("Encuentro")){
-			return new EncuentroResource();
-		}
-		return null;
+    /*
+    public static IEventoResource GetEvento() {
+        String tipoEvento= ConfigBehavior.GetProperty("Comunidad.TipoEvento");
+        if(tipoEvento.equals("Salida")){
+            return new SalidaResource();
+        }
+        else if(tipoEvento.equals("Encuentro")){
+            return new EncuentroResource();
+        }
+        return null;
     }
+    */
 }
