@@ -1,6 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>com.comrueda</groupId>
         <artifactId>comrueda</artifactId>
@@ -12,12 +14,48 @@
 
     <name>comrueda-web</name>
 
+    <!--
+    <properties>
+        <ignoreWebxml>true</ignoreWebxml>
+    </properties>
+    <profiles>
+        <profile>
+            <id>sin-logger</id>
+            <activation>
+                <activeByDefault/>
+            </activation>    
+            <dependencies>
+                <dependency>
+                    <groupId>com.comrueda</groupId>
+                    <artifactId>comrueda-back</artifactId>
+                    <version>1.0</version>
+                </dependency>
+            </dependencies>    
+        </profile>
+        
+        <profile>
+            <id>con-logger</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.comrueda</groupId>
+                    <artifactId>comrueda-back-aspect</artifactId>
+                    <version>1.0</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>com.comrueda</groupId>
+                            <artifactId>comrueda-back</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+        
+            </dependencies>    
+        </profile>    
+        
+    </profiles>
+    -->
+
+    <!-- dependencias generales -->
     <dependencies>
-        <dependency>
-            <groupId>com.comrueda</groupId>
-            <artifactId>comrueda-back</artifactId>
-            <version>1.0</version>
-        </dependency>
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>
@@ -27,6 +65,12 @@
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.comrueda</groupId>
+            <artifactId>comrueda-back</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -44,5 +88,28 @@
             <artifactId>arquillian-junit-container</artifactId>
             <type>jar</type>
         </dependency>
+    <!--
+	<dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.13</version>
+        </dependency>
+    -->
     </dependencies>
+
+    <!--
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <packagingExcludes>
+                        WEB-INF/lib/conrueda-back-1.0.jar
+                    </packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>    
+    -->
 </project>

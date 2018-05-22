@@ -26,6 +26,7 @@ public class MiembroPersistance {
     }
 
     public List<MiembroEntity> listarMiembros() {
+        System.out.println("Consultando todos los miembros SYSTEM.OUT");
         LOGGER.info("Consultando todos los miembros");
         TypedQuery<MiembroEntity> query = em.createQuery("select u from MiembroEntity u where u.esAdministrador=false", MiembroEntity.class);
         return query.getResultList();

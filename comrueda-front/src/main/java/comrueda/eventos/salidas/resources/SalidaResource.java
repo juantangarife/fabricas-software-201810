@@ -4,76 +4,72 @@ import comrueda.eventos.salidas.dtos.SalidaDTO;
 import comrueda.eventos.salidas.ejb.SalidaLogic;
 import comrueda.eventos.salidas.entities.SalidaEntity;
 import comrueda.common.exceptions.BusinessLogicException;
+import comrueda.eventos.interfaces.EventoDTO;
 import comrueda.eventos.salidas.persistance.SalidaPersistance;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.ws.rs.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("eventos/salidas")
-@Produces("application/json")
-@Consumes("application/json")
-@RequestScoped
-public class SalidaResource {
+import comrueda.eventos.interfaces.IEventoResource;
 
-	@Inject
-	SalidaLogic salidaLogic;
+public class SalidaResource implements IEventoResource {
 
-	private static final Logger LOGGER = Logger.getLogger(SalidaPersistance.class.getName());
+    SalidaLogic salidaLogic;
 
-	@POST
-	@Path("crear")
-	public SalidaDTO crearSalida(SalidaDTO salida) throws BusinessLogicException {
-		SalidaEntity salidaEntity = salida.toEntity();
-		SalidaEntity nuevoMiembro = salidaLogic.crearSalida(salidaEntity);
-		return new SalidaDTO(nuevoMiembro);
-	}
+    private static final Logger LOGGER = Logger.getLogger(SalidaPersistance.class.getName());
 
-	@GET
-	public List<SalidaDTO> getSalidas() {
-		return listEntity2DTO(salidaLogic.listarSalidas());
-	}
+    public SalidaResource(SalidaLogic salidaLogic) {
+        this.salidaLogic = salidaLogic;
+    }
 
-	/*
-	@GET
-	@Path("{id: \\d+}")
-	public SalidaDTO buscar(@PathParam("id") Long id) {
-		SalidaEntity entity = salidaLogic.buscar(id);
-		if (entity != null) {
-			return new SalidaDTO(entity);
-		}
-		return null;
-	}
-
-	@PUT
-	@Path("{id: \\d+}")
-	public SalidaDTO actualizar(@PathParam("id") Long id, SalidaDTO salida) throws BusinessLogicException {
-		salida.setId(id);
+    @Override
+    public EventoDTO buscar(Long id) {
         SalidaEntity entity = salidaLogic.buscar(id);
+        if (entity != null) {
+            return new SalidaDTO(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public void borrar(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una salida con id {0}", id);
+        SalidaEntity entity = salidaLogic.buscar(id);
+        salidaLogic.borrar(entity);
+    }
+
+    @Override
+    public EventoDTO crearEvento(EventoDTO evento) throws BusinessLogicException {
+        SalidaEntity salidaEntity = (SalidaEntity) evento.toEntity();
+        SalidaEntity nuevaSalida = salidaLogic.crearSalida(salidaEntity);
+        return new SalidaDTO(nuevaSalida);
+    }
+
+    @Override
+    public List<EventoDTO> getEventos() {
+        return listEntity2DTO(salidaLogic.listarSalidas());
+    }
+
+    @Override
+    public EventoDTO actualizar(Long id, EventoDTO evento) throws BusinessLogicException {
+        SalidaDTO encuentro = (SalidaDTO) evento;
+        encuentro.setId(id);
+
+        SalidaEntity entity = salidaLogic.buscar(id);
+
         if (entity == null) {
             throw new BusinessLogicException("El recurso /salidas/" + id + " no existe.");
         }
-        return new SalidaDTO(salidaLogic.actualizar(salida.toEntity()));
-	}
+        return new SalidaDTO(salidaLogic.actualizar(encuentro.toEntity()));
+    }
 
-	@DELETE
-	@Path("{id: \\d+}")
-	public void borrar(@PathParam("id") Long id) throws BusinessLogicException {
-		LOGGER.log(Level.INFO, "Inicia proceso de borrar una salida con id {0}", id);
-        SalidaEntity entity = salidaLogic.buscar(id);
-		salidaLogic.borrar(entity);
-	}
-	*/
-
-	private List<SalidaDTO> listEntity2DTO(List<SalidaEntity> entityList) {
-		List<SalidaDTO> list = new ArrayList<SalidaDTO>();
-		for (SalidaEntity entity : entityList) {
-			list.add(new SalidaDTO(entity));
-		}
-		return list;
-	}
+    private List<EventoDTO> listEntity2DTO(List<SalidaEntity> entityList) {
+        List<EventoDTO> list = new ArrayList<EventoDTO>();
+        for (SalidaEntity entity : entityList) {
+            list.add(new SalidaDTO(entity));
+        }
+        return list;
+    }
 }
