@@ -27,9 +27,9 @@ public class EncuentroLogic {
 
     public List<EncuentroEntity> listarEncuentros() {
         LOGGER.info("Inicia proceso de consultar todos los encuentros");
-        List<EncuentroEntity> salidas = persistence.listarEncuentros();
+        List<EncuentroEntity> encuentros = persistence.listarEncuentros();
         LOGGER.info("Termina proceso de consultar todos los encuentros");
-        return salidas;
+        return encuentros;
     }
 
     public EncuentroEntity buscar(Long id) {

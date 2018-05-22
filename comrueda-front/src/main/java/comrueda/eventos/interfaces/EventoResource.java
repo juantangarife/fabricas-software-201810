@@ -29,23 +29,15 @@ import javax.ws.rs.PathParam;
  */
 public abstract class EventoResource {
 
-	@POST
-	public abstract EventoDTO crearMiembro(EventoDTO salida) throws BusinessLogicException;
+	public abstract EventoDTO crearMiembro(EventoDTO evento) throws BusinessLogicException;
 
-	@GET
 	public abstract List<EventoDTO> getEventos();
 
-	@GET
-	@Path("{id: \\d+}")
-	public abstract EventoDTO buscar(@PathParam("id") Long id);
+	public abstract EventoDTO buscar(Long id);
 
-	@PUT
-	@Path("{id: \\d+}")
-	public abstract EventoDTO actualizar(@PathParam("id") Long id, EventoDTO salida) throws BusinessLogicException;
+	public abstract EventoDTO actualizar(Long id, EventoDTO evento) throws BusinessLogicException;
 
-	@DELETE
-	@Path("{id: \\d+}")
-	public abstract void borrar(@PathParam("id") Long id) throws BusinessLogicException;
+	public abstract void borrar( Long id) throws BusinessLogicException;
 
-	public abstract List<EventoDTO> listEntity2DTO(List<EventoEntity> entityList);
+	//public abstract List<EventoDTO> listEntity2DTO(List<EventoEntity> entityList);
 }

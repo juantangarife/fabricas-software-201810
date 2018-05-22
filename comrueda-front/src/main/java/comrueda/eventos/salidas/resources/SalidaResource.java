@@ -4,6 +4,8 @@ import comrueda.eventos.salidas.dtos.SalidaDTO;
 import comrueda.eventos.salidas.ejb.SalidaLogic;
 import comrueda.eventos.salidas.entities.SalidaEntity;
 import comrueda.common.exceptions.BusinessLogicException;
+import comrueda.eventos.interfaces.EventoDTO;
+import comrueda.eventos.interfaces.EventoResource;
 import comrueda.eventos.salidas.persistance.SalidaPersistance;
 
 import javax.enterprise.context.RequestScoped;
@@ -18,44 +20,22 @@ import java.util.logging.Logger;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class SalidaResource {
+public class SalidaResource extends EventoResource{
 
 	@Inject
 	SalidaLogic salidaLogic;
 
 	private static final Logger LOGGER = Logger.getLogger(SalidaPersistance.class.getName());
 
-	@POST
-	public SalidaDTO crearMiembro(SalidaDTO salida) throws BusinessLogicException {
-		SalidaEntity salidaEntity = salida.toEntity();
-		SalidaEntity nuevoMiembro = salidaLogic.crearSalida(salidaEntity);
-		return new SalidaDTO(nuevoMiembro);
-	}
-
-	@GET
-	public List<SalidaDTO> getSalidas() {
-		return listEntity2DTO(salidaLogic.listarSalidas());
-	}
-
 	@GET
 	@Path("{id: \\d+}")
-	public SalidaDTO buscar(@PathParam("id") Long id) {
+        @Override
+	public EventoDTO buscar(@PathParam("id") Long id) {
 		SalidaEntity entity = salidaLogic.buscar(id);
 		if (entity != null) {
 			return new SalidaDTO(entity);
 		}
 		return null;
-	}
-
-	@PUT
-	@Path("{id: \\d+}")
-	public SalidaDTO actualizar(@PathParam("id") Long id, SalidaDTO salida) throws BusinessLogicException {
-		salida.setId(id);
-        SalidaEntity entity = salidaLogic.buscar(id);
-        if (entity == null) {
-            throw new BusinessLogicException("El recurso /salidas/" + id + " no existe.");
-        }
-        return new SalidaDTO(salidaLogic.actualizar(salida.toEntity()));
 	}
 
 	@DELETE
@@ -66,11 +46,43 @@ public class SalidaResource {
 		salidaLogic.borrar(entity);
 	}
 
-	private List<SalidaDTO> listEntity2DTO(List<SalidaEntity> entityList) {
-		List<SalidaDTO> list = new ArrayList<SalidaDTO>();
-		for (SalidaEntity entity : entityList) {
-			list.add(new SalidaDTO(entity));
-		}
-		return list;
-	}
+
+    @POST
+    @Override
+    public EventoDTO crearMiembro(EventoDTO evento) throws BusinessLogicException {
+        SalidaEntity encuentroEntity = (SalidaEntity)evento.toEntity();
+	SalidaEntity nuevoMiembro = salidaLogic.crearSalida(encuentroEntity);
+	return new SalidaDTO(nuevoMiembro);
+    }
+
+    @GET
+    @Override
+    public List<EventoDTO> getEventos() {
+        return listEntity2DTO(salidaLogic.listarSalidas());
+    }
+    
+    @PUT
+    @Path("{id: \\d+}")
+    @Override
+    public EventoDTO actualizar(@PathParam("id")Long id, EventoDTO evento) throws BusinessLogicException {
+        SalidaDTO encuentro=(SalidaDTO)evento;
+        encuentro.setId(id);
+        
+        SalidaEntity entity = salidaLogic.buscar(id);
+        
+        if (entity == null) {
+            throw new BusinessLogicException("El recurso /salidas/" + id + " no existe.");
+        }
+        return new SalidaDTO(salidaLogic.actualizar(encuentro.toEntity()));
+    }
+    
+    
+        
+    private List<EventoDTO> listEntity2DTO(List<SalidaEntity> entityList) {
+            List<EventoDTO> list = new ArrayList<EventoDTO>();
+            for (SalidaEntity entity : entityList) {
+                    list.add(new SalidaDTO(entity));
+            }
+            return list;
+    }
 }
