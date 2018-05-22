@@ -2,9 +2,9 @@ package comrueda.productos.productoImagen.resources;
 
 import comrueda.common.exceptions.BusinessLogicException;
 import comrueda.factories.ProductoImagenEntityFactory;
+import comrueda.producto.ejb.ProductoLogic;
+import comrueda.producto.entities.ProductoEntity;
 import comrueda.productos.productoImagen.dtos.ProductoImagenDTO;
-import comrueda.productos.productoImagen.ejb.ProductoImagenLogic;
-import comrueda.productos.productoImagen.entities.ProductoImagenEntity;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class ProductoImagenResource {
 
     @Inject
-    ProductoImagenLogic productoLogic;
+    ProductoLogic productoLogic;
 
     private ProductoImagenEntityFactory productoFactoryEntity;
 
@@ -33,8 +33,8 @@ public class ProductoImagenResource {
     @POST
     @Path("agregar")
     public ProductoImagenDTO crearProducto(ProductoImagenDTO producto) throws BusinessLogicException {
-        ProductoImagenEntity productoEntity = productoFactoryEntity.getProductoEntity(producto);
-        ProductoImagenEntity nuevoProducto = productoLogic.crearProducto(productoEntity);
+        ProductoEntity productoEntity = productoFactoryEntity.getProductoEntity(producto);
+        ProductoEntity nuevoProducto = productoLogic.crearProducto(productoEntity);
         return new ProductoImagenDTO(nuevoProducto);
     }
 
@@ -59,7 +59,7 @@ public class ProductoImagenResource {
     @Path("{id: \\d+}")
     public ProductoImagenDTO actualizar(@PathParam("id") Long id, ProductoImagenDTO producto) throws BusinessLogicException {
         producto.setId(id);
-        ProductoImagenEntity entity = productoLogic.buscar(id);
+        ProductoEntity entity = productoLogic.buscar(id);
         if (entity == null) {
             throw new BusinessLogicException("El recurso /productos/" + id + " no existe.");
         }
@@ -76,9 +76,9 @@ public class ProductoImagenResource {
     }
     */
 
-    private List<ProductoImagenDTO> listEntity2DTO(List<ProductoImagenEntity> entityList) {
+    private List<ProductoImagenDTO> listEntity2DTO(List<ProductoEntity> entityList) {
         List<ProductoImagenDTO> list = new ArrayList<ProductoImagenDTO>();
-        for (ProductoImagenEntity entity : entityList) {
+        for (ProductoEntity entity : entityList) {
             list.add(new ProductoImagenDTO(entity));
         }
         return list;

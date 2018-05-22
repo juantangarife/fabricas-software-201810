@@ -1,23 +1,38 @@
-package comrueda.productos.productoSimple.ejb;
+package comrueda.producto.ejb;
 
-import comrueda.productos.productoSimple.entities.ProductoEntity;
-import comrueda.productos.productoSimple.persistance.ProductoPersistance;
+import comrueda.producto.entities.ProductoEntity;
+import comrueda.producto.persistance.ProductoPersistance;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+//import javax.ejb.Remote;
 
-@Stateless
+//@Remote(ProductoLogic.class)
+//public interface ProductoLogic {
+//    public ProductoEntity crearProducto(ProductoEntity entity);
+//
+//    public List<ProductoEntity> listarProductos();
+//
+//    public ProductoEntity buscar(Long id);
+//
+//    public ProductoEntity actualizar(ProductoEntity entity);
+//
+//    public void borrar(ProductoEntity entity);
+//
+//}
+
+@Stateless(name="ProductoLogic")
 public class ProductoLogic {
-	
-	private static final Logger LOGGER = Logger.getLogger(ProductoLogic.class.getName());
-	
-	@Inject
+
+    private static final Logger LOGGER = Logger.getLogger(ProductoLogic.class.getName());
+
+    @Inject
     private ProductoPersistance persistence;
-	
-	public ProductoEntity crearProducto(ProductoEntity entity) {
+
+    public ProductoEntity crearProducto(ProductoEntity entity) {
         LOGGER.info("Inicia proceso de creación de producto");
         persistence.crear(entity);
         LOGGER.info("Termina proceso de creación de producto");
@@ -35,10 +50,11 @@ public class ProductoLogic {
         return persistence.buscar(id);
     }
 
-    public ProductoEntity actualizar(ProductoEntity entity)  {
+    public ProductoEntity actualizar(ProductoEntity entity) {
         return persistence.actualizar(entity);
     }
-    
+
+
     public void borrar(ProductoEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar producto con id={0}", entity.getId());
         persistence.borrar(entity);

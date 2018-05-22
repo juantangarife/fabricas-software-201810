@@ -1,6 +1,6 @@
 package comrueda.productos.productoSimple.dtos;
 
-import comrueda.productos.productoSimple.entities.ProductoEntity;
+import comrueda.producto.entities.ProductoEntity;
 import comrueda.productos.dtos.IProductoDTO;
 
 public class ProductoDTO implements IProductoDTO {

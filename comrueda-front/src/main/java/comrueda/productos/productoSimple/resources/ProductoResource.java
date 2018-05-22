@@ -2,10 +2,9 @@ package comrueda.productos.productoSimple.resources;
 
 import comrueda.common.exceptions.BusinessLogicException;
 import comrueda.factories.ProductoSimpleEntityFactory;
+import comrueda.producto.ejb.ProductoLogic;
+import comrueda.producto.entities.ProductoEntity;
 import comrueda.productos.productoSimple.dtos.ProductoDTO;
-import comrueda.productos.productoSimple.ejb.ProductoLogic;
-import comrueda.productos.productoSimple.entities.ProductoEntity;
-import comrueda.productos.productoSimple.ejb.ProductoLogic;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
